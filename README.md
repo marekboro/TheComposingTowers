@@ -8,12 +8,14 @@ A hotel booking App:
 - abstract classes and inheritance
 - encapsulation
 - HashMaps
+- logic and problem solving
+- packages
 
 #### Requirements:
 - Java compiler & Java
 
 ## Classes tested:
-- [ ] one
+- [ ] Randomised.java + Guest.java via GuestTest.java, test count: 4
 - [ ] two
 - [ ] three
 - [ ] four
@@ -50,6 +52,7 @@ A hotel booking App:
 ## Planning practice:
 - [x] Class diagram
 - [ ] Acceptance Criteria
+- [ ] 
 
 ## Images:
 ##### Class diagram: 
