@@ -45,8 +45,12 @@ A hotel booking App:
 - [ ] Hotel employee profiles. 
 
 ## Planning practice:
-- [ ] Class diagram
+- [x] Class diagram
 - [ ] Acceptance Criteria
 
+## Images:
+##### Class diagram: 
+![image](hotelPlanning.png) 
+##### Acceptance Criteria: 
 
 
