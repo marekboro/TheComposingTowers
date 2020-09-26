@@ -1,3 +1,5 @@
+import humans.Guest;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -5,6 +7,7 @@ public class Randomiser {
 
     private ArrayList<String> names;
     private ArrayList<String> surnames;
+
 
     private double walletMax;
 
@@ -45,12 +48,44 @@ public class Randomiser {
 }
     public String getRandomName(){
         Collections.shuffle(names);
-        Collections.shuffle(names);
+        Collections.shuffle(surnames);
         return names.get(0) + " " + surnames.get(0);
     }
 
     public Double getRandomWallet(){
         return Math.random()*walletMax;
     }
+
+    public ArrayList<Guest> makeParty(int numberInParty){
+        ArrayList<Guest> team = new ArrayList<Guest>();
+        for (int i = 0; i <numberInParty; i++){
+            Guest person = new Guest();
+            person.setName(getRandomName());
+            person.setWallet(getRandomWallet());
+            team.add(person);
+        }
+        return team;
+    }
+
+    public Guest getDemoPerson1(){
+        Guest newPerson = new Guest();
+        newPerson.setName(getRandomName());
+        newPerson.setWallet(getRandomWallet());
+        return newPerson;
+    }
+    public Guest getDemoPerson2(){
+        Guest newPerson = new Guest();
+        newPerson.setName("AAA");
+        newPerson.setWallet(500.0);
+        return newPerson;
+    }
+    public Guest getDemoPerson3(){
+        Guest newPerson = new Guest();
+        newPerson.setName("BBB");
+        newPerson.setWallet(600.0);
+        return newPerson;
+    }
+
+
 
 }

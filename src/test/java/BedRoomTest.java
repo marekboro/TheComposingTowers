@@ -150,6 +150,32 @@ public class BedRoomTest {
 
     }
 
+    @Test
+    public void roomHasARoomNumber(){
+        assertEquals(1, bedRoom1.getRoomNumber());
+        assertEquals(2, bedRoom2.getRoomNumber());
+        assertEquals(3, bedRoom3.getRoomNumber());
+        assertEquals(4, bedRoom5.getRoomNumber());
+
+    }
+    @Test
+    public void roomHasAType(){
+        assertEquals(RoomType.SINGLE, bedRoom1.getType());
+        assertEquals(RoomType.DOUBLE, bedRoom2.getType());
+        assertEquals(RoomType.TRIPLE, bedRoom3.getType());
+        assertEquals(RoomType.FAMILY, bedRoom5.getType());
+
+    }
+
+    @Test
+    public void roomsHaveProportionalRate(){
+        assertEquals(150.0,bedRoom1.getRate(),0.01);
+        assertEquals(300.0,bedRoom2.getRate(),0.01);
+        assertEquals(450.0,bedRoom3.getRate(),0.01);
+        assertEquals(750.0,bedRoom5.getRate(),0.01);
+
+    }
+
 
 
 
