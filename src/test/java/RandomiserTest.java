@@ -47,4 +47,5 @@ public class RandomiserTest {
         assertTrue(rando.getName().length()>=8);
         assertTrue(rando.getWallet()>=0);
     }
+
 }

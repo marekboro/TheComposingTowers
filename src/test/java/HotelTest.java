@@ -1,8 +1,12 @@
 import humans.Guest;
 import org.junit.Before;
 import org.junit.Test;
+import rooms.BedRoom;
+import rooms.RoomType;
 
-import static org.junit.Assert.assertEquals;
+import java.util.ArrayList;
+
+import static org.junit.Assert.*;
 
 public class HotelTest {
 
@@ -47,10 +51,69 @@ public class HotelTest {
     }
 
     @Test
-    public void canCheckInToRoom(){
-        Guest guest = randomiser.getDemoP1();
-        hotel.checkin(11,guest);
+    public void canGetRoomByNumber(){
+        BedRoom a = hotelDemo.getBedroomByNumber(11);
+        assertEquals(RoomType.SINGLE,a.getType());
+        BedRoom b = hotelDemo.getBedroomByNumber(1);
+        assertEquals(RoomType.FAMILY,b.getType());
     }
 
+    @Test
+    public void canCheckInSingleAndGroupToRoomButNotBeyondCapacity(){
+        // SINGLE ROOM
+        Guest guest1 = randomiser.getDemoP1();
+        Guest guest2 = randomiser.getDemoP2();
+        BedRoom room = hotelDemo.getBedroomByNumber(11);
+        //
+        assertEquals(0,room.getGuests().size());
+        hotelDemo.checkIn(11,guest1);
+        assertEquals(1,room.getGuests().size());
+        //
+        Guest guestInRoom = room.getGuests().get(0);
+        assertEquals(guest1,guestInRoom);
+        //
+        hotelDemo.checkIn(11,guest2);
+        assertEquals(1,room.getGuests().size());
+        // FAMILY ROOM:
+        ArrayList<Guest> testGroupFive = randomiser.groupDemo05;
+        BedRoom familyRoom = hotelDemo.getBedroomByNumber(1);
+        assertEquals(0,familyRoom.getGuests().size());
+        hotelDemo.checkIn(1,testGroupFive);
+        assertEquals(5,familyRoom.getGuests().size());
 
+    }
+
+    @Test
+    public void canCheckoutSingleOrGroupsProvidedAllAreGuestsOfHotel(){
+        ArrayList<Guest> testGroupFour = randomiser.groupDemo04;
+        BedRoom room = hotelDemo.getBedroomByNumber(1);
+        hotelDemo.checkIn(1,testGroupFour);  //Steven Rambo missing
+        Guest g1 = room.getGuests().get(0);
+        Guest g2 = room.getGuests().get(1);
+        Guest g3 = room.getGuests().get(2);
+        Guest g4 = room.getGuests().get(3);
+        assertEquals(g1,testGroupFour.get(0));
+        assertEquals(g2,testGroupFour.get(1));
+        assertEquals(g3,testGroupFour.get(2));
+        assertEquals(g4,testGroupFour.get(3));
+        assertEquals(4,room.getGuests().size());
+        assertTrue(hotelDemo.getAllGuests().containsKey(g1));
+        assertTrue(hotelDemo.getAllGuests().containsKey(g2));
+        assertTrue(hotelDemo.getAllGuests().containsKey(g3));
+        assertTrue(hotelDemo.getAllGuests().containsKey(g4));
+
+        Guest missingGuest = randomiser.getDemoP4();
+        assertFalse(hotelDemo.getAllGuests().containsKey(missingGuest));
+        hotelDemo.checkOut(missingGuest);
+        assertEquals(4,room.getGuests().size());
+        assertEquals(4,hotelDemo.getAllGuests().size());
+        hotelDemo.checkOut(testGroupFour);
+        assertEquals(0,room.getGuests().size());
+        assertEquals(0,hotelDemo.getAllGuests().size());
+        hotelDemo.checkIn(1,testGroupFour);
+        hotelDemo.checkOut(g1);
+        assertEquals(3,room.getGuests().size());
+        assertEquals(3,hotelDemo.getAllGuests().size());
+
+    }
 }
