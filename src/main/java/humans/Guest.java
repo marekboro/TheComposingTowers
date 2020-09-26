@@ -10,7 +10,6 @@ public class Guest {
         this.wallet = 0.00;
     }
 
-
     public String getName() {
         return name;
     }

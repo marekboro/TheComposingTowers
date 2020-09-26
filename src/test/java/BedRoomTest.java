@@ -173,7 +173,6 @@ public class BedRoomTest {
         assertEquals(300.0,bedRoom2.getRate(),0.01);
         assertEquals(450.0,bedRoom3.getRate(),0.01);
         assertEquals(750.0,bedRoom5.getRate(),0.01);
-
     }
 
 

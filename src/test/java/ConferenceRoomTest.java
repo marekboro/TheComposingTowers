@@ -30,8 +30,8 @@ public class ConferenceRoomTest {
     }
     @Test
     public void addingGuestsWithinDefaultGuestsDoesNoAdjustPrice(){
-        Guest person1 = randomiser.getDemoPerson2();
-        Guest person2 = randomiser.getDemoPerson3();
+        Guest person1 = randomiser.getDemoP1();
+        Guest person2 = randomiser.getDemoP2();
         conferenceRoom.addGuest(person1);
         assertEquals(1500.0,conferenceRoom.getFinalPrice(),0.01);
 

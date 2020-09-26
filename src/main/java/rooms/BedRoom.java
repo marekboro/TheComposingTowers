@@ -15,6 +15,14 @@ public class BedRoom extends Room {
 
     }
 
+//    public BedRoom singleBedroom(int roomNumber){
+//        BedRoom singleRoom = new BedRoom(0,RoomType.SINGLE);
+//        this.roomNumber = roomNumber;
+//        this.setCapacity(type.getCapacity());
+//        this.rate = 150.0*getCapacity();
+//        return singleRoom;
+//    }
+
     public int getRoomNumber() {
         return roomNumber;
     }
