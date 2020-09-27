@@ -56,6 +56,6 @@ A hotel booking App:
 ##### Class diagram: 
 ![image](hotelPlanning.png) 
 ##### Acceptance Criteria: 
-![image](acc crit.png) 
+![image](acccrit.png) 
 
 
