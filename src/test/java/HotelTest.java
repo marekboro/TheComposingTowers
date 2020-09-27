@@ -114,6 +114,44 @@ public class HotelTest {
         hotelDemo.checkOut(g1);
         assertEquals(3,room.getGuests().size());
         assertEquals(3,hotelDemo.getAllGuests().size());
+    }
+
+
+    @Test
+    public void canCreateBookingThatHasACostAndWhichWillUpdateBankAccount(){
+        Booking booking = hotelDemo.bookRoom(hotelDemo.getBedroomByNumber(11),3);
+        assertEquals(booking,hotelDemo.getBookings().get(0));
+        assertEquals(3450.0,hotelDemo.getBankAccount(),0.01);
+        assertTrue(hotelDemo.getBookings().contains(booking));
 
     }
+
+    @Test
+    public void canCreateDiningRoomsWhichWillAddToHashCollectionDiningrooms(){
+        hotelDemo.addDiningRoom("Sunny");
+        hotelDemo.addDiningRoom("Happy");
+        assertEquals(2, hotelDemo.getDiningRooms().size());
+
+    }
+
+
+    @Test
+    public void canGetVacantRoomsList(){
+        ArrayList<Guest> testGroupFour = randomiser.groupDemo04;
+        ArrayList<Guest> testGroupOne = randomiser.groupDemo01;
+        ArrayList<Guest> testGroupTwo = randomiser.groupDemo02;
+        ArrayList<Guest> testGroupThree = randomiser.groupDemo03;
+        Guest guest1 = randomiser.getDemoP1();
+        assertEquals(12, hotelDemo.getBedRooms().size());
+        assertEquals(12, hotelDemo.getVacantBedrooms().size());
+        hotelDemo.checkIn(1,testGroupFour);
+        hotelDemo.checkIn(2,testGroupThree);
+        hotelDemo.checkIn(4,testGroupTwo);
+        hotelDemo.checkIn(9,testGroupOne);
+        hotelDemo.checkIn(10,guest1);
+        assertEquals(12, hotelDemo.getBedRooms().size());
+        assertEquals(7, hotelDemo.getVacantBedrooms().size());
+
+    }
+
 }

@@ -1,9 +1,11 @@
 import humans.Guest;
 import rooms.BedRoom;
 import rooms.ConferenceRoom;
+import rooms.DiningRoom;
 import rooms.Room;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 
 
@@ -14,8 +16,9 @@ public class Hotel {
     private ArrayList<BedRoom> bedRooms;
     private ArrayList<ConferenceRoom> conferenceRooms;
     private ArrayList<Integer> roomNumbers;
-//    private ArrayList<Guest> allGuests;
+    private ArrayList<Booking> bookings;
     private Hashtable<Guest,Integer> allGuests;
+    private HashMap<String, DiningRoom> diningRooms;
 
 
 
@@ -25,13 +28,59 @@ public class Hotel {
         conferenceRooms = new ArrayList<ConferenceRoom>();
         roomNumbers = new ArrayList<Integer>();
         bedRooms = new ArrayList<BedRoom>();
-//        allGuests = new ArrayList<Guest>();
+        bookings = new ArrayList<Booking>();
         allGuests = new Hashtable<Guest, Integer>();
+        diningRooms = new HashMap<String, DiningRoom>();
     }
 
 
+    public boolean diningRoomDoesNotExist(String name){
+        return !diningRooms.containsKey(name);
+    }
+
+    public ArrayList<BedRoom> getVacantBedrooms(){
+        ArrayList<BedRoom> vacant = new ArrayList<BedRoom>();
+        for (BedRoom bedRoom : bedRooms) {
+            if(bedRoom.getGuests().size()==0){
+                vacant.add(bedRoom);
+            }
+        }
+        return vacant;
+    }
+
+    public void addDiningRoom(DiningRoom diningRoom){
+        if (diningRoomDoesNotExist(diningRoom.getName())) {
+        diningRooms.put(diningRoom.getName(),diningRoom);}
+    }
+
+    public void addDiningRoom(String name){
+        DiningRoom diningRoom = new DiningRoom(name);
+        if (diningRoomDoesNotExist(name)){
+            diningRooms.put(name,diningRoom);}
+    }
+
+    public HashMap<String, DiningRoom> getDiningRooms() {
+        return diningRooms;
+    }
+
     public Hashtable<Guest, Integer> getAllGuests() {
         return allGuests;
+    }
+
+    public Booking bookRoom(BedRoom bedRoom, int nights){
+        Booking booking = new Booking(bedRoom,nights);
+        bankAccount += booking.getCost();  // THIS MAY NEED TO MOVE TO CHECKIN
+        bookings.add(booking);
+        return booking;
+
+    }
+
+    public ArrayList<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(ArrayList<Booking> bookings) {
+        this.bookings = bookings;
     }
 
     public double getBankAccount() {

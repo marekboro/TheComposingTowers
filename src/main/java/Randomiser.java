@@ -186,6 +186,8 @@ public class Randomiser {
         return newPerson;
     }
 
+
+
     public Hotel createHotelDemo(){
         Hotel hotel = new Hotel();
         hotel.addFamilyRoom(1);
