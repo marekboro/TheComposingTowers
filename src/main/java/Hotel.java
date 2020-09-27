@@ -18,6 +18,7 @@ public class Hotel {
     private Hashtable<Guest,Integer> allGuests;
 
 
+
     public Hotel() {
         bankAccount = 3000.0;
         randomiser = new Randomiser();
@@ -181,7 +182,6 @@ public class Hotel {
                 room.removeAGuest(guest);
                 allGuests.remove(guest);
             }
-
 
         }
     }
